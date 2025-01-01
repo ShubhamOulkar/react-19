@@ -8,10 +8,10 @@ import Lines from "../assets/images/pattern-lines.svg";
 export default function Background() {
   return (
     <div className="background">
-      <img src={TopLine} className="topline" />
-      <img src={Lines} className="vericleline" />
-      <img src={Circle} className="circle" />
-      <img src={BottomLine} className="bottomline" />
+      <img src={TopLine} className="topline" alt="b-t" />
+      <img src={Lines} className="vericleline" alt="b-l" />
+      <img src={Circle} className="circle" alt="b-c" />
+      <img src={BottomLine} className="bottomline" alt="b-b" />
       <Outlet />
       <Attribution />
     </div>

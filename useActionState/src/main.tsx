@@ -3,8 +3,9 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { onRender } from "./onRenderProfile";
 import { PictureProvider } from "./picture context/createPictureContext";
-const Background = lazy(() => import("./pages/Background"));
-const FormPage = lazy(() => import("./pages/FormPage"));
+import "./main.css";
+import Background from "./pages/Background";
+import FormPage from "./pages/FormPage";
 const TicketPage = lazy(() => import("./pages/TicketPage"));
 
 createRoot(document.getElementById("root")!).render(
