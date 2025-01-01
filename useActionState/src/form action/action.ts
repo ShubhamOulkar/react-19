@@ -1,7 +1,6 @@
-import { InitialState } from "../type/formType";
 import { Schema } from "../form validation/formSchema";
 
-export async function action(previousState: InitialState, formData: FormData) {
+export async function action(previousState: any, formData: FormData) {
   const submitCount = previousState.submitCount + 1;
   const data = {
     name: formData.get("name")?.toString() || "",

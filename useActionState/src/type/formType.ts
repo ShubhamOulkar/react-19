@@ -50,4 +50,6 @@ export type PictureContext = {
   setFormErr: React.Dispatch<React.SetStateAction<Errors>>;
   inputFileRef: React.RefObject<HTMLInputElement | null>;
   previewRef: React.RefObject<HTMLImageElement | null>;
+  pictureUpload: boolean;
+  setPictureUpload: React.Dispatch<React.SetStateAction<boolean>>;
 };

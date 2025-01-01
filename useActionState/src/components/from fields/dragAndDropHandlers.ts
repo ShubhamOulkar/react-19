@@ -16,7 +16,8 @@ const stateUpdater = (
   imageFiles: FileList,
   inputFileRef: RefObject<HTMLInputElement | null>,
   setFormErr: React.Dispatch<React.SetStateAction<Errors>>,
-  previewRef: RefObject<HTMLImageElement | null>
+  previewRef: RefObject<HTMLImageElement | null>,
+  setPictureUpload: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   if (!validate.success) {
     const picErr = validate.error.flatten().fieldErrors.picture;
@@ -24,12 +25,14 @@ const stateUpdater = (
     setFormErr((prevErr) => ({ ...prevErr, picture: picErr }));
     if (previewRef.current) {
       previewRef.current.src = UploadImageIcon;
+      setPictureUpload(false);
     }
   } else {
     setFormErr((prevErr) => ({ ...prevErr, picture: undefined }));
     if (inputFileRef.current && previewRef.current) {
       inputFileRef.current.files = imageFiles;
       previewRef.current.src = URL.createObjectURL(imageFiles[0]);
+      setPictureUpload(true);
     }
   }
 };
@@ -47,7 +50,8 @@ const handleDrop = (
   inputFileRef: RefObject<HTMLInputElement | null>,
   resetPicture: () => void,
   setFormErr: React.Dispatch<React.SetStateAction<Errors>>,
-  previewRef: RefObject<HTMLImageElement | null>
+  previewRef: RefObject<HTMLImageElement | null>,
+  setPictureUpload: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   stopEvent(e);
   const imageFiles = e.dataTransfer.files; // dataTransfer holds data files during drag and drop events
@@ -58,7 +62,8 @@ const handleDrop = (
     imageFiles,
     inputFileRef,
     setFormErr,
-    previewRef
+    previewRef,
+    setPictureUpload
   );
 };
 
@@ -67,7 +72,8 @@ const handleFileChange = (
   inputFileRef: RefObject<HTMLInputElement | null>,
   resetPicture: () => void,
   setFormErr: React.Dispatch<React.SetStateAction<Errors>>,
-  previewRef: RefObject<HTMLImageElement | null>
+  previewRef: RefObject<HTMLImageElement | null>,
+  setPictureUpload: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   stopEvent(e);
   const imageFiles = e.target.files as FileList;
@@ -78,7 +84,8 @@ const handleFileChange = (
     imageFiles,
     inputFileRef,
     setFormErr,
-    previewRef
+    previewRef,
+    setPictureUpload
   );
 };
 

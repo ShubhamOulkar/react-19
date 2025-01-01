@@ -7,7 +7,8 @@ export const action = (
   setFormErr: React.Dispatch<React.SetStateAction<Errors>>,
   resetPicture: () => void,
   previewRef: React.RefObject<HTMLImageElement | null>,
-  setUserData: React.Dispatch<React.SetStateAction<UserType>>
+  setUserData: React.Dispatch<React.SetStateAction<UserType>>,
+  setPictureUpload: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   return async (previousState: InitialState, formData: FormData) => {
     const submitCount = previousState.submitCount + 1;
@@ -43,6 +44,7 @@ export const action = (
     if (previewRef.current) previewRef.current.src = UploadImageIcon; // remove preview
     resetPicture(); // reset picture context
     setFormErr(validate.error.flatten().fieldErrors); // set error fields
+    setPictureUpload(false);
     return {
       success: false,
       data: data,

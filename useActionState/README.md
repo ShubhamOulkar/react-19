@@ -8,12 +8,10 @@ This is a solution to the [Conference ticket generator challenge on Frontend Men
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
-    - [Screenshot](#screenshot)
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+    - [Screenshot](#screenshot)
 
 ## Overview
 
@@ -31,10 +29,6 @@ Users should be able to:
 - See the generated conference ticket when they successfully submit the form
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
-
-### Screenshot
-
-![Generated ticket](image.png)
 
 ## My process
 
@@ -90,3 +84,11 @@ UseActionStateForm updates faster than react hook Form with a significantly lowe
 ```
 
 5. Also I learned about clamp() function is ccs. This function reduces use of media query. Responsive pages are easy to design with clamp() especially font-size and widths.
+
+### Screenshot
+
+![Form page](design/image-2.png)
+![Ticket page](design/image-3.png)
+![Form page errors](design/image-1.png)
+![Form page field](design/image-4.png)
+![Change and remove btn](design/image.png)

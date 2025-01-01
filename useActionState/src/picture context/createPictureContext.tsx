@@ -20,6 +20,7 @@ export const PictureProvider = ({ children }: PropsWithChildren) => {
     email: "",
     githubName: "",
   });
+  const [pictureUpload, setPictureUpload] = useState(false);
   const resetPicture = () => {
     setUserData((prevData) => ({ ...prevData, picture: UploadImageIcon }));
   };
@@ -33,6 +34,8 @@ export const PictureProvider = ({ children }: PropsWithChildren) => {
         setFormErr,
         inputFileRef,
         previewRef,
+        pictureUpload,
+        setPictureUpload,
       }}
     >
       {children}

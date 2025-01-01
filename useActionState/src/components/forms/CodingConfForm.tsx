@@ -6,10 +6,15 @@ import { InitialState } from "../../type/formType";
 import DragAndDrop from "../from fields/DragAndDrop";
 import { usePictureContext } from "../../picture context/createPictureContext";
 
-export default function CondingConfForm() {
+export default function CodingConfForm() {
   const navigate = useNavigate();
-  const { setUserData, setFormErr, resetPicture, previewRef } =
-    usePictureContext();
+  const {
+    setUserData,
+    setFormErr,
+    resetPicture,
+    previewRef,
+    setPictureUpload,
+  } = usePictureContext();
   const initialState: InitialState = {
     success: false,
     data: {
@@ -21,7 +26,7 @@ export default function CondingConfForm() {
     submitCount: 0,
   };
   const [formState, formAction, isPending] = useActionState(
-    action(setFormErr, resetPicture, previewRef, setUserData),
+    action(setFormErr, resetPicture, previewRef, setUserData, setPictureUpload),
     initialState
   );
 
@@ -30,7 +35,7 @@ export default function CondingConfForm() {
       // navigate to ticket
       navigate("/ticket");
     }
-  }, [formState.success]);
+  }, [formState.success, navigate]);
 
   return (
     <form action={formAction}>

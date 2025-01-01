@@ -11,6 +11,15 @@
   --Border-radius: 10px;
 }
 
+@font-face {
+  font-family: "Inconsolata";
+  src: url("./assets/fonts/Inconsolata-VariableFont_wdth\,wght.ttf");
+}
+
+html {
+  font-family: "Inconsolata", sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -84,11 +93,11 @@ body {
   align-items: center;
   padding: 1rem;
   padding-top: 2rem;
-  gap: 0.3rem;
+  gap: 2rem;
 }
 
 .ticket-background {
-  width: 25rem;
+  width: clamp(10rem, 80vw, 25rem);
   min-height: 4rem;
   background-image: url("./assets//images/pattern-ticket.svg");
   background-repeat: no-repeat;
@@ -99,14 +108,6 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: clamp(1rem, 4vw, 3rem);
-
-  @media screen and (max-width: 375px) {
-    width: 15rem;
-  }
-
-  @media screen and (max-width: 650px) {
-    width: 20rem;
-  }
 }
 
 .ticket {
@@ -136,13 +137,14 @@ body {
 }
 
 h1 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 10vw, 2.5rem);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   text-align: center;
   word-spacing: 5px;
   flex-wrap: wrap;
+  font-weight: 700;
 
   > sub {
     color: var(--Neutral-500);
@@ -158,10 +160,11 @@ form {
 }
 
 input,
-button {
+button,
+.dnd-btn {
   cursor: pointer;
   width: initial;
-  font-size: clamp(1rem, 1.1rem, 1.2rem);
+  font-size: clamp(1rem, 5vw, 1.2rem);
   padding-block: 0.3rem;
   padding-inline: 0.7rem;
   border-radius: var(--Border-radius);
@@ -180,6 +183,7 @@ input {
 }
 
 input::placeholder {
+  font-family: "Inconsolata", sans-serif;
   color: var(--Neutral-500);
 }
 
@@ -187,14 +191,15 @@ button {
   color: var(--Neutral-900);
   background-color: var(--Orange-500);
   font-weight: 600;
-  height: 2.5rem;
+  height: 3rem;
   border: 1px solid var(--Orange-700);
 }
 
 label {
   color: var(--Neutral-300);
-  font-size: clamp(1rem, 1.1rem, 1.2rem);
+  font-size: clamp(1rem, 5vw, 1.2rem);
   cursor: pointer;
+  font-weight: 600;
 
   @media screen and (min-width: 1440px) {
     font-size: 20px;
@@ -230,23 +235,53 @@ label {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 0.8rem;
-  font-size: clamp(0.7rem, 1vw, 1rem);
+  font-size: clamp(0.7rem, 3vw, 1rem);
 
   &:is(:focus, :hover, :active) {
     outline: 1px solid var(--Neutral);
     outline-offset: 3px;
   }
+
+  @media screen and (min-width: 375px) {
+    height: 8rem;
+  }
 }
 
 .preview-picture {
   display: block;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: var(--Neutral-700);
   border-radius: var(--Border-radius);
   border: 2px solid var(--Neutral-300);
+
+  @media screen and (min-width: 375px) {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.dnd-btn-container {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.dnd-btn {
+  color: var(--Neutral-500);
+  background-color: var(--Neutral-700);
+  font-weight: 400;
+  height: 2rem;
+  border: 1px solid var(--Neutral-900);
+
+  &:is(:hover, :focus, :active) {
+    background-color: var(--Neutral-500);
+    color: var(--Neutral-900);
+    outline-offset: 1px;
+    border-radius: 5px;
+  }
 }
 
 .attribution {
@@ -255,7 +290,7 @@ label {
   font-size: 1rem;
   text-align: center;
   padding-block: 2rem;
-  align-self: end;
+  align-self: center;
 }
 .attribution a {
   color: hsl(229, 37%, 88%);
