@@ -2,6 +2,8 @@
 
 This is a solution to the [Conference ticket generator challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/conference-ticket-generator-oq5gFIU12w). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
+[SSR live demo](https://auth-zu2a.onrender.com/conf)
+
 ## Table of contents
 
 - [Frontend Mentor - Conference ticket generator solution](#frontend-mentor---conference-ticket-generator-solution)
@@ -40,6 +42,8 @@ Users should be able to:
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
+- Express
+- Vite SSR
 
 ### What I learned
 
@@ -48,6 +52,16 @@ I learned new react 19 hook useActionState. This hook reduces use of useState ho
 Following design specifications are achieved,
 
 1. 50% less re-rendring of the forms
+   | form | render |
+   | ------------------- | ----------------- |
+   | react-hoot-forms | 4 times on submit |
+   | useActionState form | 2 times on submit |
+
+   | Form fields         | render                            |
+   | ------------------- | --------------------------------- |
+   | react-hook-form     | rerender with parent form         |
+   | useActionState form | rerender on prop change(memoised) |
+
 2. 8% Less bundle size
 3. Mounting Phase:
 
@@ -85,10 +99,21 @@ UseActionStateForm updates faster than react hook Form with a significantly lowe
 
 5. Also I learned about clamp() function is ccs. This function reduces use of media query. Responsive pages are easy to design with clamp() especially font-size and widths.
 
+6. Built SSR form using express and vite ssr bundler. SSR forms reduces initial page rendering for client. This improves user experience. [SSR live demo](https://auth-zu2a.onrender.com/conf)
+   Note :- page might be slow because response is delayed by 50 secound by render.com. The puprpose on this SSR rendering to test/learn reacts api renderToPipeableStream on express app.
+
+   ![web vitals results ](design/image-5.png)
+
 ### Screenshot
 
-![Form page](design/image-2.png)
-![Ticket page](design/image-3.png)
-![Form page errors](design/image-1.png)
-![Form page field](design/image-4.png)
-![Change and remove btn](design/image.png)
+| Form page                        | Ticket Page                        |
+| -------------------------------- | ---------------------------------- |
+| ![Form page](design/image-2.png) | ![Ticket page](design/image-3.png) |
+
+| Form page errors                        | Form page field                        |
+| --------------------------------------- | -------------------------------------- |
+| ![Form page errors](design/image-1.png) | ![Form page field](design/image-4.png) |
+
+| Change and remove btn                      | web vitals results                         |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Change and remove btn](design/image.png) | ![web vitals results ](design/image-5.png) |
