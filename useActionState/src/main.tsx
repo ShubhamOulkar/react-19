@@ -5,7 +5,7 @@ import { onRender } from "./onRenderProfile";
 import { PictureProvider } from "./picture context/createPictureContext";
 import "./main.css";
 import Background from "./pages/Background";
-import FormPage from "./pages/FormPage";
+const FormPage = lazy(() => import("./pages/FormPage"));
 const TicketPage = lazy(() => import("./pages/TicketPage"));
 
 createRoot(document.getElementById("root")!).render(
