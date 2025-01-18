@@ -1,8 +1,9 @@
 import getCSSFilePath from "../utils/getCSSFilePath.js";
 const isProduction = process.env.NODE_ENV === "production";
+
 /**
  * Renders a component to string with error handling
- * @param {Error} err - Error object
+ * @param {ErrorState} err - ErrorState object
  * @param {string} componentName - Name of the component
  * @param {import('vite').ViteDevServer} vite - Vite dev server instance
  * @returns {Promise<string>} Rendered HTML string

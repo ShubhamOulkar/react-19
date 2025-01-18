@@ -1,9 +1,13 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import renderReact from "../server/react SSR functions/renderReact.js";
 import renderToString from "../server/SSG/renderToString.js";
 import { throwError } from "../server/utils/throwError.js";
 import { productionMiddlewares } from "../server/middleware/productionMiddlewares.js";
-//@ts-nocheck
+import { createServer, ViteDevServer } from "vite";
+interface ErrorState {
+  message: string;
+  status: number;
+}
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
@@ -14,7 +18,7 @@ const ABORT_DELAY = 10000;
 const app = express();
 
 // Add request timeout middleware
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   const timeout = setTimeout(() => {
     res.status(408);
     res.set({
@@ -28,9 +32,8 @@ app.use((req, res, next) => {
 });
 
 // Add Vite development or respective production middlewares
-let vite;
+let vite: ViteDevServer;
 if (!isProduction) {
-  const { createServer } = await import("vite");
   vite = await createServer({
     server: { middlewareMode: true },
     appType: "custom",
@@ -42,7 +45,7 @@ if (!isProduction) {
 }
 
 // Routes
-app.use("/login", async (req, res, next) => {
+app.use("/login", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const url = req.originalUrl.replace("/", "");
     await renderReact(req, res, url, vite);
@@ -51,7 +54,7 @@ app.use("/login", async (req, res, next) => {
   }
 });
 
-app.use("*all", async (req, res, next) => {
+app.use("*all", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const url = req.originalUrl.replace("/", "");
     console.log("url :", url);
@@ -66,22 +69,27 @@ app.use("*all", async (req, res, next) => {
 });
 
 // Error handling middleware
-app.use(async (err, req, res, next) => {
-  // log error on server
-  console.error(`${err.status} : `, err.message);
-  try {
-    const htmlData = await renderToString(err, "error", vite);
-    res.set({
-      "Content-Type": "text/html",
-    });
-    res.status(500).send(htmlData);
-  } catch (err) {
-    console.error("Error rendering error page on server:", err.stack);
-    res
-      .status(500)
-      .send("Internal Server Error : Error rendering error page on the server");
+app.use(
+  async (err: ErrorState, req: Request, res: Response, next: NextFunction) => {
+    // log error on server
+    console.error(`${err.status} : `, err.message);
+    try {
+      //@ts-nocheck
+      const htmlData = await renderToString(err, "error", vite);
+      res.set({
+        "Content-Type": "text/html",
+      });
+      res.status(500).send(htmlData);
+    } catch (err) {
+      console.error("Error rendering error page on server:", err.stack);
+      res
+        .status(500)
+        .send(
+          "Internal Server Error : Error rendering error page on the server"
+        );
+    }
   }
-});
+);
 
 // Start http server
 app.listen(port, () => {
