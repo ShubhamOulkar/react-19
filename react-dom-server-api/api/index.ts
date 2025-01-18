@@ -3,7 +3,7 @@ import renderReact from "../server/react SSR functions/renderReact.js";
 import renderToString from "../server/SSG/renderToString.js";
 import { throwError } from "../server/utils/throwError.js";
 import { productionMiddlewares } from "../server/middleware/productionMiddlewares.js";
-
+//@ts-nocheck
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
