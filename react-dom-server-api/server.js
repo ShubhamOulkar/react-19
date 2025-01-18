@@ -93,6 +93,8 @@ app.listen(port, () => {
   console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
 });
 
+export { app };
+
 process.on("unhandledRejection", (reason, promise) => {
   console.error("Unhandled Rejection at:", promise, "reason:", reason);
 });
