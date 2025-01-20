@@ -4,9 +4,7 @@ const base = process.env.BASE || "/";
 export const staticFilesRouter = Router();
 import path from "path";
 import { fileURLToPath } from "url";
-const __dirname = path.dirname(
-  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
-);
+const __dirname = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 
 // Configure static file serving
 const staticOptions = {
