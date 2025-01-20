@@ -43,7 +43,7 @@ const serveStatic = (directories) => {
 staticFilesRouter.use(
   base,
   serveStatic([
-    "../../dist/client", // SSR client assets
-    "../../dist/server/error", // Error page assets
+    "../dist/client", // SSR client assets
+    "../dist/server/error", // Error page assets
   ])
 );
