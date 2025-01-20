@@ -22,7 +22,7 @@ export default async function renderToString(err, componentName, vite) {
 
     const cssFilePath = isProduction
       ? await getCSSFilePath("error")
-      : resolve(__dirname, `views/${componentName}/Error.css`);
+      : resolve(__dirname, `./views/${componentName}/Error.css`);
 
     const render = isProduction
       ? (await import(`../../dist/server/${componentName}/entry-server.js`))
@@ -31,6 +31,10 @@ export default async function renderToString(err, componentName, vite) {
           .render;
 
     const { prelude } = cssFilePath && (await render(errorState, cssFilePath));
+
+    if (!prelude) {
+      return false;
+    }
 
     return new Promise((resolve, reject) => {
       let data = "";
