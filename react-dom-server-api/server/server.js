@@ -69,22 +69,22 @@ app.use("*all", async (req, res, next) => {
 });
 
 // Error handling middleware
-app.use(async (err, req, res, next) => {
-  // log error on server
-  console.error(`${err.status} : `, err.message);
-  try {
-    const htmlData = await renderToString(err, "error", vite);
-    res.set({
-      "Content-Type": "text/html",
-    });
-    res.status(500).send(htmlData);
-  } catch (err) {
-    console.error("Error rendering error page on server:", err.stack);
-    res
-      .status(500)
-      .send("Internal Server Error : Error rendering error page on the server");
-  }
-});
+// app.use(async (err, req, res, next) => {
+//   // log error on server
+//   console.error(`${err.status} : `, err.message);
+//   try {
+//     const htmlData = await renderToString(err, "error", vite);
+//     res.set({
+//       "Content-Type": "text/html",
+//     });
+//     res.status(500).send(htmlData);
+//   } catch (err) {
+//     console.error("Error rendering error page on server:", err.stack);
+//     res
+//       .status(500)
+//       .send("Internal Server Error : Error rendering error page on the server");
+//   }
+// });
 
 export { app };
 
