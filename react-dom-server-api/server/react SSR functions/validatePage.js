@@ -1,5 +1,4 @@
 import fs from "fs";
-import { pathToFileURL } from "url";
 const isProduction = process.env.NODE_ENV === "production";
 
 export function validatePage(componentName) {
@@ -17,8 +16,8 @@ export function validatePage(componentName) {
   }
 
   return {
-    fullTemplatePath: isProduction ? pathToFileURL(templatePath) : templatePath,
-    fullEntryPath: isProduction ? pathToFileURL(entryPath) : entryPath,
+    fullTemplatePath: templatePath,
+    fullEntryPath: entryPath,
   };
 }
 
