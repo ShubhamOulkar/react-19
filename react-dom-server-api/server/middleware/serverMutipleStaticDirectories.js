@@ -2,6 +2,9 @@ import { Router } from "express";
 const sirv = (await import("sirv")).default;
 const base = process.env.BASE || "/";
 export const staticFilesRouter = Router();
+import process from "process";
+import { resolve } from "path";
+const __dirname = process.cwd();
 
 // Configure static file serving
 const staticOptions = {
@@ -20,7 +23,7 @@ const serveStatic = (directories) => {
       if (i >= directories.length) {
         return next();
       }
-      const handler = sirv(directories[i], staticOptions);
+      const handler = sirv(resolve(__dirname, directories[i]), staticOptions);
       handler(req, res, (err) => {
         if (err) return next(err);
         tryNext(i + 1);

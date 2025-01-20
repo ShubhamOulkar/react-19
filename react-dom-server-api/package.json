@@ -4,11 +4,11 @@
   "description": "react server api",
   "type": "module",
   "scripts": {
-    "dev": "nodemon startServer.js",
+    "dev": "nodemon startDevServer.js",
     "build": "pnpm run build:client && pnpm run build:server",
     "build:client": "vite build",
     "build:server": "node build-ssr.js",
-    "preview": "cross-env NODE_ENV=production node startServer.js"
+    "preview": "cross-env NODE_ENV=production node startDevServer.js"
   },
   "dependencies": {
     "compression": "^1.7.5",
