@@ -25,7 +25,10 @@ const serveStatic = (directories) => {
       if (i >= directories.length) {
         return next();
       }
-      const handler = sirv(resolve(__dirname, directories[i]), staticOptions);
+      const handler = sirv(
+        path.resolve(__dirname, directories[i]),
+        staticOptions
+      );
       handler(req, res, (err) => {
         if (err) return next(err);
         tryNext(i + 1);
