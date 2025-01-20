@@ -3,8 +3,12 @@ const sirv = (await import("sirv")).default;
 const base = process.env.BASE || "/";
 export const staticFilesRouter = Router();
 import path from "path";
+import process from "process";
 import { fileURLToPath } from "url";
-const __dirname = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+// const __dirname = path.dirname(
+//   path.dirname(path.dirname(fileURLToPath(import.meta.url)))
+// );
+const __dirname = process.cwd();
 
 // Configure static file serving
 const staticOptions = {
