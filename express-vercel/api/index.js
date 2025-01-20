@@ -5,7 +5,7 @@ import sirv from "sirv";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-const assets = sirv("../dist/client", {
+const assets = sirv(path.resolve(__dirname, "../dist/client"), {
   maxAge: 31536000, // 1Y
   immutable: true,
 });
