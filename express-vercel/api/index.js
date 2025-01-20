@@ -5,14 +5,13 @@ import sirv from "sirv";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-
-// const assets = sirv("dist/client", {
-//   maxAge: 31536000, // 1Y
-//   immutable: true,
-// });
+const assets = sirv("../dist/client", {
+  maxAge: 31536000, // 1Y
+  immutable: true,
+});
 
 // static assets
-// app.use(assets);
+app.use(assets);
 
 // React page
 app.get("*", async (req, res) => {
@@ -26,6 +25,7 @@ app.get("*", async (req, res) => {
     ).renderComponentOnServer;
     const html = render();
     template = template.replace("<!--app-html-->", html);
+    res.setHeader("Content-Type", "text/html");
     res.send(template);
   } catch (err) {
     console.error(err.stack);
