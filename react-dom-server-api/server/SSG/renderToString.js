@@ -1,7 +1,7 @@
 import getCSSFilePath from "../utils/getCSSFilePath.js";
 const isProduction = process.env.NODE_ENV === "production";
-import { resolve, dirname } from "path";
-const __dirname = dirname(dirname(dirname(import.meta.url)));
+import path from "path";
+const __dirname = path.dirname(path.dirname(path.dirname(import.meta.url)));
 
 /**
  * Renders a component to string with error handling
@@ -22,7 +22,7 @@ export default async function renderToString(err, componentName, vite) {
 
     const cssFilePath = isProduction
       ? await getCSSFilePath("error")
-      : resolve(__dirname, `./views/${componentName}/Error.css`);
+      : path.resolve(__dirname, `./views/${componentName}/Error.css`);
 
     const render = isProduction
       ? (await import(`../../dist/server/${componentName}/entry-server.js`))
