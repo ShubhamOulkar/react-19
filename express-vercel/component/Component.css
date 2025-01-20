@@ -1,0 +1,11 @@
+.count-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  color: aliceblue;
+  background-color: black;
+  font: 1em sans-serif;
+  border-radius: 0.5em;
+}
