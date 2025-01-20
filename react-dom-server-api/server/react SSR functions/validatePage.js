@@ -21,7 +21,7 @@ export function validatePage(componentName) {
   // }
 
   return {
-    fullTemplatePath: pathToFileURL(templatePath),
+    fullTemplatePath: templatePath,
     fullEntryPath: pathToFileURL(entryPath),
   };
 }
