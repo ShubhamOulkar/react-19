@@ -2,9 +2,11 @@ import { Router } from "express";
 const sirv = (await import("sirv")).default;
 const base = process.env.BASE || "/";
 export const staticFilesRouter = Router();
-import process from "process";
-import { resolve } from "path";
-const __dirname = process.cwd();
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(
+  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
+);
 
 // Configure static file serving
 const staticOptions = {
