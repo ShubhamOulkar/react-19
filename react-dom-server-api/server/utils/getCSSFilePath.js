@@ -1,8 +1,10 @@
 import fs from "node:fs/promises";
-import { dirname } from "node:path";
 import path from "path";
+import { fileURLToPath } from "node:url";
 
-const __dirname = path.dirname(path.dirname(path.dirname(import.meta.url)));
+const __dirname = path.dirname(
+  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
+);
 
 export default async function getCSSFilePath(componentName) {
   try {

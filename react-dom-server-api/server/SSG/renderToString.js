@@ -1,7 +1,10 @@
 import getCSSFilePath from "../utils/getCSSFilePath.js";
 const isProduction = process.env.NODE_ENV === "production";
 import path from "path";
-const __dirname = path.dirname(path.dirname(path.dirname(import.meta.url)));
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(
+  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
+);
 
 /**
  * Renders a component to string with error handling
