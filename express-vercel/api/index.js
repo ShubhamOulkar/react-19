@@ -12,7 +12,7 @@ const app = express();
 // });
 
 // static assets
-app.use(assets);
+// app.use(assets);
 
 // React page
 app.get("*", async (req, res) => {
