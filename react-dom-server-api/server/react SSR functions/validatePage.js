@@ -9,8 +9,8 @@ const isProduction = process.env.NODE_ENV === "production";
 export function validatePage(componentName) {
   const { templatePath, entryPath } = generatePaths(componentName);
 
-  const templateExists = fs.existsSync(templatePath);
-  const entryExists = fs.existsSync(entryPath);
+  const templateExists = fs.existsSync(pathToFileURL(templatePath));
+  const entryExists = fs.existsSync(pathToFileURL(entryPath));
 
   if (!templateExists || !entryExists) {
     throw new Error(
