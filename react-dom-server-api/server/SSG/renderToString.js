@@ -1,6 +1,7 @@
 import getCSSFilePath from "../utils/getCSSFilePath.js";
 const isProduction = process.env.NODE_ENV === "production";
 import { resolve } from "path";
+import process from "process";
 const __dirname = process.cwd();
 
 /**
