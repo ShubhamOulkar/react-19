@@ -1,4 +1,9 @@
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+const __dirname = path.dirname(
+  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
+);
 const isProduction = process.env.NODE_ENV === "production";
 
 export function validatePage(componentName) {
@@ -16,8 +21,8 @@ export function validatePage(componentName) {
   }
 
   return {
-    fullTemplatePath: templatePath,
-    fullEntryPath: entryPath,
+    fullTemplatePath: path.resolve(__dirname, templatePath),
+    fullEntryPath: path.resolve(__dirname, entryPath),
   };
 }
 
