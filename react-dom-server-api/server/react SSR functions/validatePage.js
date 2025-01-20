@@ -9,16 +9,16 @@ const isProduction = process.env.NODE_ENV === "production";
 export function validatePage(componentName) {
   const { templatePath, entryPath } = generatePaths(componentName);
 
-  const templateExists = fs.existsSync(pathToFileURL(templatePath));
-  const entryExists = fs.existsSync(pathToFileURL(entryPath));
+  // const templateExists = fs.existsSync(pathToFileURL(templatePath));
+  // const entryExists = fs.existsSync(pathToFileURL(entryPath));
 
-  if (!templateExists || !entryExists) {
-    throw new Error(
-      `Invalid paths:\n${
-        !templateExists ? `Template not found: ${templatePath}\n` : ""
-      }${!entryExists ? `Entry file not found: ${entryPath}` : ""}`
-    );
-  }
+  // if (!templateExists || !entryExists) {
+  //   throw new Error(
+  //     `Invalid paths:\n${
+  //       !templateExists ? `Template not found: ${templatePath}\n` : ""
+  //     }${!entryExists ? `Entry file not found: ${entryPath}` : ""}`
+  //   );
+  // }
 
   return {
     fullTemplatePath: pathToFileURL(templatePath),
