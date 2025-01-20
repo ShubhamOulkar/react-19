@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 const __dirname = path.dirname(
   path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 );
@@ -21,8 +21,8 @@ export function validatePage(componentName) {
   }
 
   return {
-    fullTemplatePath: path.resolve(__dirname, templatePath),
-    fullEntryPath: path.resolve(__dirname, entryPath),
+    fullTemplatePath: pathToFileURL(templatePath),
+    fullEntryPath: pathToFileURL(entryPath),
   };
 }
 
