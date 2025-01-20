@@ -5,11 +5,11 @@ import sirv from "sirv";
 import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
-// Init `sirv` handler
-const assets = sirv("dist/client", {
-  maxAge: 31536000, // 1Y
-  immutable: true,
-});
+
+// const assets = sirv("dist/client", {
+//   maxAge: 31536000, // 1Y
+//   immutable: true,
+// });
 
 // static assets
 app.use(assets);
