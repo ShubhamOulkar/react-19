@@ -3,7 +3,6 @@ const sirv = (await import("sirv")).default;
 const base = process.env.BASE || "/";
 export const staticFilesRouter = Router();
 import path from "path";
-import process from "process";
 import { fileURLToPath } from "url";
 const __dirname = path.dirname(
   path.dirname(path.dirname(fileURLToPath(import.meta.url)))
@@ -26,10 +25,7 @@ const serveStatic = (directories) => {
       if (i >= directories.length) {
         return next();
       }
-      const handler = sirv(
-        path.resolve(__dirname, directories[i]),
-        staticOptions
-      );
+      const handler = sirv(directories[i], staticOptions);
       handler(req, res, (err) => {
         if (err) return next(err);
         tryNext(i + 1);
@@ -43,7 +39,7 @@ const serveStatic = (directories) => {
 staticFilesRouter.use(
   base,
   serveStatic([
-    "../dist/client", // SSR client assets
-    "../dist/server/error", // Error page assets
+    "./dist/client", // SSR client assets
+    "./dist/server/error", // Error page assets
   ])
 );

@@ -25,7 +25,7 @@ export default async function renderToString(err, componentName, vite) {
 
     const cssFilePath = isProduction
       ? await getCSSFilePath("error")
-      : path.resolve(__dirname, `./views/${componentName}/Error.css`);
+      : `./views/${componentName}/Error.css`;
 
     const render = isProduction
       ? (await import(`../../dist/server/${componentName}/entry-server.js`))
