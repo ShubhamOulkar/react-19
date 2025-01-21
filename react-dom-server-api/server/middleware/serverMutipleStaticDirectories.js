@@ -1,12 +1,7 @@
 import { Router } from "express";
-const sirv = (await import("sirv")).default;
-const base = process.env.BASE || "/";
-export const staticFilesRouter = Router();
 import path from "path";
-import { fileURLToPath } from "url";
-const __dirname = path.dirname(
-  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
-);
+const sirv = (await import("sirv")).default;
+export const staticFilesRouter = Router();
 
 // Configure static file serving
 const staticOptions = {
@@ -18,28 +13,31 @@ const staticOptions = {
   gzip: true,
 };
 
+staticFilesRouter.use(sirv(path.resolve("./dist/client"), staticOptions));
+
+staticFilesRouter.use(sirv(path.resolve("./dist/server/error"), staticOptions));
+
 // Helper to serve from multiple directories
-const serveStatic = (directories) => {
-  return (req, res, next) => {
-    const tryNext = (i = 0) => {
-      if (i >= directories.length) {
-        return next();
-      }
-      const handler = sirv(directories[i], staticOptions);
-      handler(req, res, (err) => {
-        if (err) return next(err);
-        tryNext(i + 1);
-      });
-    };
-    tryNext();
-  };
-};
+// const serveStatic = (directories) => {
+//   return (req, res, next) => {
+//     const tryNext = (i = 0) => {
+//       if (i >= directories.length) {
+//         return next();
+//       }
+//       const handler = sirv(directories[i], staticOptions);
+//       handler(req, res, (err) => {
+//         if (err) return next(err);
+//         tryNext(i + 1);
+//       });
+//     };
+//     tryNext();
+//   };
+// };
 
 // Serve static files from multiple directories
-staticFilesRouter.use(
-  base,
-  serveStatic([
-    "./dist/client", // SSR client assets
-    "./dist/server/error", // Error page assets
-  ])
-);
+// staticFilesRouter.use(
+//   serveStatic([
+//     "./dist/client", // SSR client assets
+//     "./dist/server/error", // Error page assets
+//   ])
+// );

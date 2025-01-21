@@ -1,9 +1,5 @@
 import fs from "fs";
-import path from "path";
-import { fileURLToPath, pathToFileURL } from "url";
-const __dirname = path.dirname(
-  path.dirname(path.dirname(fileURLToPath(import.meta.url)))
-);
+import { pathToFileURL } from "url";
 const isProduction = process.env.NODE_ENV === "production";
 
 export function validatePage(componentName) {
