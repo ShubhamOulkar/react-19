@@ -9,6 +9,6 @@ const assets = sirv(path.resolve(__dirname, "../dist"), {
 });
 
 // static assets
-//app.use(assets);
+app.use(assets);
 
 export default app;
